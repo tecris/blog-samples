@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="info" name="dcts" packages="">
+    <Appenders>
+        <Kafka name="Kafka" topic="dcts-log-api">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+            <Property name="bootstrap.servers">localhost:9092</Property>
+            <Property name="security.protocol">SSL</Property>
+            <Property name="ssl.truststore.location">/etc/security/tls/client.truststore.jks</Property>
+            <Property name="ssl.truststore.password">projectk</Property>
+            <Property name="ssl.keystore.location">/etc/security/tls/client.keystore.jks</Property>
+            <Property name="ssl.keystore.password">projectk</Property>
+            <Property name="ssl.key.password">projectk</Property>
+        </Kafka>
+        <Console name="STDOUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="stdout" level="info">
+            <AppenderRef ref="STDOUT" />
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Kafka" />
+            <AppenderRef ref="STDOUT" />
+        </Root>
+        <Logger name="org.apache.kafka" level="INFO" /> <!-- avoid recursive logging -->
+    </Loggers>
+</Configuration>
