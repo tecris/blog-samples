@@ -6,10 +6,10 @@
             <Property name="bootstrap.servers">localhost:9092</Property>
             <Property name="security.protocol">SSL</Property>
             <Property name="ssl.truststore.location">/etc/security/tls/client.truststore.jks</Property>
-            <Property name="ssl.truststore.password">projectk</Property>
+            <Property name="ssl.truststore.password">${sys:storePassword}</Property>
             <Property name="ssl.keystore.location">/etc/security/tls/client.keystore.jks</Property>
-            <Property name="ssl.keystore.password">projectk</Property>
-            <Property name="ssl.key.password">projectk</Property>
+            <Property name="ssl.keystore.password">${sys:storePassword}</Property>
+            <Property name="ssl.key.password">${sys:storePassword}</Property>
         </Kafka>
         <Console name="STDOUT">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
