@@ -97,7 +97,7 @@
                 <version>2.21.0</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <storePassword>projectk</storePassword>
+                        <storePassword>salzburg</storePassword>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
