@@ -97,7 +97,7 @@
                 <version>2.21.0</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <storePassword>salzburg</storePassword>
+                        <storePassword>${test.password}</storePassword>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
