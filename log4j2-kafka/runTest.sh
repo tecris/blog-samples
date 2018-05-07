@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 docker run --rm \
     --name maven-build \
     -v "$(pwd)":/opt \
@@ -10,5 +12,5 @@ docker run --rm \
     mvn -f /opt/pom.xml \
     -Dkafka.topic=log4j2-kafka-topic \
     -DstorePassword=salzburg \
-    -Dkafka.broker.url=192.168.0.10:9092 \
+    -Dkafka.broker.url=$KAFKA_HOST:9092 \
     clean test
