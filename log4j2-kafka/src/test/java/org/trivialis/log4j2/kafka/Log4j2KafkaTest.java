@@ -33,8 +33,8 @@ class Log4j2KafkaTest {
 
     @Test
     void logToKafka() {
-        String kafkaTopic = System.getProperty("kafkaTopic", "localhost:9092");
-        String message = "test junit 5 - spring boot";
+        String kafkaTopic = System.getProperty("kafkaTopic", "log4j2-kafka-topic");
+        String message = "test log4j2 - kafka appender";
         new Log4j2Kafka().logToKafka(message);
         consumer.subscribeToTopic(kafkaTopic);
         List<String> messageList = consumer.getMessageList();
