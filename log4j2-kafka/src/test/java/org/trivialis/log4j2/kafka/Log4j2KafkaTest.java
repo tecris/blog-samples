@@ -16,7 +16,8 @@ class Log4j2KafkaTest {
     @BeforeEach
     public void before() {
 
-        consumer = new Consumer("localhost:9092",
+        String brokerUrl = System.getProperty("kafkaUrl", "localhost:9092");
+        consumer = new Consumer(brokerUrl,
                 "/etc/security/tls/client.truststore.jks",
                 "salzburg",
                 "/etc/security/tls/client.keystore.jks",
@@ -32,9 +33,10 @@ class Log4j2KafkaTest {
 
     @Test
     void logToKafka() {
+        String kafkaTopic = System.getProperty("kafkaTopic", "localhost:9092");
         String message = "test junit 5 - spring boot";
         new Log4j2Kafka().logToKafka(message);
-        consumer.subscribeToTopic("log4j2-kafka");
+        consumer.subscribeToTopic(kafkaTopic);
         List<String> messageList = consumer.getMessageList();
         assertEquals(1, messageList.size());
         assertTrue(messageList.get(0).contains(message));
