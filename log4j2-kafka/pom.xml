@@ -15,6 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <store.password>salzburg</store.password>
+        <kafka.broker.url>192.168.0.10:9092</kafka.broker.url>
     </properties>
 
     <dependencies>
@@ -106,6 +107,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <storePassword>${store.password}</storePassword>
+                        <kafkaUrl>${kafka.broker.url}</kafkaUrl>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
