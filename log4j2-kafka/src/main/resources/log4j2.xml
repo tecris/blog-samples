@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Configuration status="info" name="log4j2.kafka" packages="org.trivialis.*">
     <Appenders>
-        <Kafka name="Kafka" topic="log4j2-kafka">
+        <Kafka name="Kafka" topic="${sys:kafkaTopic}">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
-            <Property name="bootstrap.servers">localhost:9092</Property>
+            <Property name="bootstrap.servers">${sys:kafkaUrl}</Property>
             <Property name="security.protocol">SSL</Property>
             <Property name="ssl.truststore.location">/etc/security/tls/client.truststore.jks</Property>
             <Property name="ssl.truststore.password">${sys:storePassword}</Property>
