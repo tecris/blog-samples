@@ -52,3 +52,21 @@ services:
       - ssl.client.auth=required
     depends_on:
       - zookeeper
+
+  run-test:
+    image: maven:3.5.3-alpine
+    container_name: maven-build
+    volumes:
+      - ./..:/opt
+      - ~/.m2:/root/.m2
+      - ..//tls_certs/client/client.keystore.jks:/etc/security/tls/client.keystore.jks:ro
+      - ../tls_certs/client/client.truststore.jks:/etc/security/tls/client.truststore.jks:ro
+    entrypoint:
+      -  mvn
+      - -f
+      - /opt/pom.xml
+      - -Dkafka.topic=log4j2-kafka-topic
+      - -DstorePassword=salzburg
+      - -Dkafka.broker.url=$KAFKA_HOST:9092
+      - clean
+      - test
