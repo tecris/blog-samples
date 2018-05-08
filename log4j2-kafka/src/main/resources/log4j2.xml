@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="info" name="log4j2.kafka" packages="org.trivialis.*">
+    <Appenders>
+        <Kafka name="Kafka" topic="${sys:kafkaTopic}">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+            <Property name="bootstrap.servers">${sys:kafkaUrl}</Property>
+        </Kafka>
+        <Console name="STDOUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="stdout" level="info">
+            <AppenderRef ref="STDOUT" />
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Kafka" />
+            <AppenderRef ref="STDOUT" />
+        </Root>
+        <Logger name="org.apache.kafka" level="INFO" /> <!-- avoid recursive logging -->
+    </Loggers>
+</Configuration>
