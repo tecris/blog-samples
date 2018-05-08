@@ -5,23 +5,6 @@ services:
     image: zookeeper
     container_name: zookeeper
 
-  kafka:
-    image: trivialis/kafka:1.1.0
-    container_name: kafka
-    ports:
-      - "9092:9092"
-    entrypoint:
-      - /usr/local/kafka/bin/kafka-server-start.sh
-      - /usr/local/kafka/config/server.properties
-      - --override
-      - zookeeper.connect=zookeeper:2181
-      - --override
-      - listeners=PLAINTEXT://kafka:$KAFKA_PORT
-      - --override
-      - advertised.listeners=PLAINTEXT://$KAFKA_HOST:$KAFKA_PORT
-    depends_on:
-      - zookeeper
-
   kafka.tls:
     image: trivialis/kafka.tls:1.1.0
     container_name: kafka.tls
