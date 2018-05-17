@@ -49,7 +49,7 @@ services:
       - -f
       - /opt/pom.xml
       - -Dkafka.topic=log4j2-kafka-topic
-      - -DstorePassword=salzburg
+      - -Dstore.password=salzburg
       - -Dkafka.broker.url=$KAFKA_HOST:9092
       - clean
       - test
