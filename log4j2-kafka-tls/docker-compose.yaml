@@ -37,7 +37,7 @@ services:
       - zookeeper
 
   run-test:
-    image: maven:3.5.3-alpine
+    image: maven:3.5-jdk-8-alpine
     container_name: log4j2-kafka-test
     volumes:
       - ./:/opt
